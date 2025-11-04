@@ -1,0 +1,24 @@
+
+
+.signup-page {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  padding: 1.5rem; 
+}
+
+.info-section {
+  background-image: url("../background.jpeg");
+  background-size: cover;
+  background-position: center;
+ 
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+
+  overflow: hidden; 
+}
+
+.form-box {
+  background: rgba(255, 255, 255, 0.386);
+}

@@ -6,4 +6,6 @@ export const USER_REGISTRATION_API_URL = `${API_BASE_URL}/UserRegistration`;
 export const USER_LOGIN_API_URL = `${API_BASE_URL}/login`;
 export const GET_DESTINATION_API_URL = `${API_BASE_URL}/getDestination`;
 
+export const ADD_DESTINATION_API_URL = `${API_BASE_URL}/AddDestination`;
+
 

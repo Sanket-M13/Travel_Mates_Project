@@ -7,6 +7,7 @@ import { Navigationbar } from "./components/Navigationbar"
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Signup } from "./components/Signup";
 import { ToastContainer } from "react-toastify";
+import { AddDestination } from "./components/AddDestination";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/destinations" element={<Destinations />} />
+        <Route path="/AddDestinations" element={<AddDestination />} />
         <Route path="/about" element={<About />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/login" element={<Login />} />

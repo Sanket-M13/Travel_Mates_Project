@@ -63,7 +63,6 @@ const navigate = useNavigate();
     <div className="login-page p-4 shadow-lg rounded-4 align-items-center justify-content-center">
       <Container className="p-0 h-100">
         <Row className="g-0 h-100 justify-content-center">
-          {/* Left Side - Form */}
           <Col md={6} className="form-section d-flex align-items-center justify-content-center">
             <div className="form-box p-4 rounded-4 bg-white">
               <h2 className="mb-3 text-center fw-bold">Welcome Back!</h2>
@@ -126,7 +125,6 @@ const navigate = useNavigate();
             </div>
           </Col>
 
-          {/* Right Side - Image + Text */}
           <Col
             md={6}
             className="info-section d-none d-md-flex align-items-center justify-content-center text-white text-center h-100"

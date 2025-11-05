@@ -9,7 +9,6 @@ export async function AddDesitnation(request, response) {
                  VALUES ('${destination_name}', '${description}', '${Travel_mode}', '${Imgpath}', '${country}')`;
 
     const [resultSet] = await connection.query(qry);
-    // console.log(resultSet);
     
     if (resultSet.affectedRows === 1) {
       response.status(200).send({ message: "Destination added successfully" });
@@ -21,6 +20,7 @@ export async function AddDesitnation(request, response) {
     response.status(500).send({ message: "Something went wrong" });
   }
 }
+
 
 export async function getAllDestination(request, response){
     try {

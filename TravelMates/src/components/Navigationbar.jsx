@@ -44,13 +44,15 @@ export function Navigationbar() {
 
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          {/* Navigation Links */}
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
             <Nav.Link onClick={() => navigate("/")} className="mx-2 fw-medium">
               Home
             </Nav.Link>
             <Nav.Link onClick={() => navigate("/destinations")} className="mx-2 fw-medium">
               Destinations
+            </Nav.Link>
+            <Nav.Link onClick={() => navigate("/Adddestinations")} className="mx-2 fw-medium">
+              Add Destinations
             </Nav.Link>
             <Nav.Link onClick={() => navigate("/bookings")} className="mx-2 fw-medium">
               Bookings
@@ -60,7 +62,6 @@ export function Navigationbar() {
             </Nav.Link>
           </Nav>
 
-          {/* Right Side Buttons */}
           <Form className="d-flex align-items-center gap-2">
             {isLoggedIn ? (
               <Button

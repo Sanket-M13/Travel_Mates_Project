@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { Signup } from "./components/Signup";
 import { ToastContainer } from "react-toastify";
 import { AddDestination } from "./components/AddDestination";
+import { DestinationList } from "./components/DestinationList";
+import {BookTripForm} from "./components/BookTripForm";
 
 
 function App() {
@@ -23,6 +25,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/AddDestinations" element={<AddDestination />} />
+        <Route path="/destinationsList" element={<DestinationList />} />
+        <Route path="/book-trip" element={<BookTripForm />} />
+        
         <Route path="/about" element={<About />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/login" element={<Login />} />

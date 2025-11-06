@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { getAllDestination } from "../services/DestinationService";
+import { useNavigate } from "react-router-dom";
 
 export function Destinations() {
   const [destinations, setDestinations] = useState([]);
+  const navigate = useNavigate();
 
   const fetchDestination = async () => {
     try {
@@ -17,6 +19,11 @@ export function Destinations() {
   useEffect(() => {
     fetchDestination();
   }, []);
+
+  const handleBookTrip = (destination) => {
+    // Navigate to BookTripForm and send destination details as state
+    navigate("/book-trip", { state: { destination } });
+  };
 
   return (
     <Container className="py-5">
@@ -63,7 +70,11 @@ export function Destinations() {
                   </p>
 
                   <div className="text-center">
-                    <Button variant="primary" className="px-4 rounded-pill">
+                    <Button
+                      variant="primary"
+                      className="px-4 rounded-pill"
+                      onClick={() => handleBookTrip(dest)}
+                    >
                       Book My Trip
                     </Button>
                   </div>

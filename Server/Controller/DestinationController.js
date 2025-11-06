@@ -71,6 +71,25 @@ export async function deleteDestinationById(request, response){
 }
 
 
+export async function UpdateDestination(request, response){
+    try {
+        const connection = getConnectionObject();
+        const {destination_name, description, Travel_mode,Imgpath,country} = request.body;
+
+        const qry = `UPDATE destination SET destination_name='${destination_name}', description='${description}',Travel_mode='${Travel_mode}',Imgpath='${Imgpath}',country='${country}' WHERE dest_id=${request.params.id}`;
+        const [resultSet] = await connection.query(qry);
+        if(resultSet.affectedRows === 1){
+            response.status(200).send({message:'Destination Updated'});
+        }
+        else{
+            response.status(500).send({message:'destination update operation failed'});
+        }
+    } catch (error) {
+         console.log(error);
+        response.status(500).send({message:'Something went wrong'});
+    }
+}
+
 
 
 

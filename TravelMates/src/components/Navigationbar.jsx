@@ -51,11 +51,17 @@ export function Navigationbar() {
             <Nav.Link onClick={() => navigate("/destinations")} className="mx-2 fw-medium">
               Destinations
             </Nav.Link>
+             <Nav.Link onClick={() => navigate("/destinationsList")} className="mx-2 fw-medium">
+              DestinationsList
+            </Nav.Link>
             <Nav.Link onClick={() => navigate("/Adddestinations")} className="mx-2 fw-medium">
               Add Destinations
             </Nav.Link>
             <Nav.Link onClick={() => navigate("/bookings")} className="mx-2 fw-medium">
               Bookings
+            </Nav.Link>
+             <Nav.Link onClick={() => navigate("/book-trip")} className="mx-2 fw-medium">
+              bookMyTrip
             </Nav.Link>
             <Nav.Link onClick={() => navigate("/about")} className="mx-2 fw-medium">
               About Us

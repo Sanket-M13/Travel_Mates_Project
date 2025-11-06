@@ -37,7 +37,6 @@ export function DestinationList() {
     }
   };
 
-  // ✏️ Edit
   const handleEdit = (destination) => {
     setSelectedDestination(destination);
     setShowEditModal(true);
@@ -71,7 +70,7 @@ export function DestinationList() {
             <th>ID</th>
             <th>Destination Name</th>
             <th>Description</th>
-            <th>Travel Mode</th>
+            <th>Starting Price</th>
             <th>Country</th>
             <th>Actions</th>
           </tr>
@@ -82,7 +81,7 @@ export function DestinationList() {
               <td>{dest.dest_id}</td>
               <td>{dest.destination_name}</td>
               <td>{dest.description}</td>
-              <td>{dest.Travel_Mode}</td>
+              <td>{dest.Price}</td>
               <td>{dest.Country}</td>
               <td style={{display: "flex", gap: "10px", justifyContent: "center"}}>
                 <Button variant="warning" size="sm" onClick={() => handleEdit(dest)} className="me-2">
@@ -146,11 +145,11 @@ export function DestinationList() {
               />
             </Form.Group>
             <Form.Group className="mb-2">
-              <Form.Label>Travel Mode</Form.Label>
+              <Form.Label>Price</Form.Label>
               <Form.Control
                 type="text"
-                name="Travel_mode"
-                value={selectedDestination?.Travel_Mode || ""}
+                name="Price"
+                value={selectedDestination?.Price || ""}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -160,15 +159,6 @@ export function DestinationList() {
                 type="text"
                 name="Imgpath"
                 value={selectedDestination?.Imgpath || ""}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Country</Form.Label>
-              <Form.Control
-                type="text"
-                name="country"
-                value={selectedDestination?.Country || ""}
                 onChange={handleChange}
               />
             </Form.Group>

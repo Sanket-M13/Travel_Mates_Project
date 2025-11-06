@@ -26,8 +26,9 @@ export function Destinations() {
   };
 
   return (
-    <Container className="py-5">
-      <h2 className="text-center mb-5 fw-bold text-primary">
+    <div>
+       <Container className="py-5 containerpt-4">
+      <h2 className="text-center mb-5 fw-bold text">
         🌍 Popular Destinations
       </h2>
 
@@ -63,7 +64,7 @@ export function Destinations() {
 
                 <div className="mt-3">
                   <p className="mb-1">
-                    <strong>Travel Mode:</strong> {dest.Travel_Mode}
+                    <strong>Starting Price:</strong> {dest.Price}
                   </p>
                   <p className="mb-3">
                     <strong>Country:</strong> {dest.Country}
@@ -71,7 +72,7 @@ export function Destinations() {
 
                   <div className="text-center">
                     <Button
-                      variant="primary"
+                      variant="secondary"
                       className="px-4 rounded-pill"
                       onClick={() => handleBookTrip(dest)}
                     >
@@ -85,5 +86,7 @@ export function Destinations() {
         ))}
       </Row>
     </Container>
+    </div>
+ 
   );
 }

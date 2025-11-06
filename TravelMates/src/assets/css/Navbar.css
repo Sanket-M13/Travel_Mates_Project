@@ -1,0 +1,24 @@
+.nav-hover {
+  position: relative;
+  color: #333 !important;
+  transition: color 0.3s ease;
+}
+
+.nav-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #007bff;
+  transition: width 0.3s ease;
+}
+
+.nav-hover:hover {
+  color: #007bff !important;
+}
+
+.nav-hover:hover::after {
+  width: 100%;
+}

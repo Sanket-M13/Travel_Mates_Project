@@ -1,0 +1,21 @@
+.about-page {
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.team-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.team-photo img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border: 4px solid #007bff;
+}

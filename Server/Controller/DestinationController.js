@@ -1,23 +1,24 @@
 import { getConnectionObject } from "../config/db.js";
 
-export async function AddDesitnation(request, response) {
+export async function AddDestination(req, res) {
   try {
     const connection = getConnectionObject();
-    const { destination_name, description, Travel_mode, Imgpath, country } = request.body;
+    const { destination_name, description, Price, Imgpath, country } = req.body;
 
-    const qry = `INSERT INTO destination(destination_name, description, Travel_mode, Imgpath, country)
-                 VALUES ('${destination_name}', '${description}', '${Travel_mode}', '${Imgpath}', '${country}')`;
+    const qry = `
+      INSERT INTO destination(destination_name, description, Price, Imgpath, country)
+      VALUES ('${destination_name}', '${description}', ${Price}, '${Imgpath}', '${country}')
+    `;
 
-    const [resultSet] = await connection.query(qry);
-    
-    if (resultSet.affectedRows === 1) {
-      response.status(200).send({ message: "Destination added successfully" });
+    const [result] = await connection.query(qry);
+    if (result.affectedRows === 1) {
+      res.status(200).send({ message: "Destination added successfully!" });
     } else {
-      response.status(400).send({ message: "Failed to add destination" });
+      res.status(400).send({ message: "Failed to add destination" });
     }
   } catch (error) {
-    console.log(error);
-    response.status(500).send({ message: "Something went wrong" });
+    console.error("Add Destination Error:", error);
+    res.status(500).send({ message: "Something went wrong" });
   }
 }
 
@@ -74,9 +75,11 @@ export async function deleteDestinationById(request, response){
 export async function UpdateDestination(request, response){
     try {
         const connection = getConnectionObject();
-        const {destination_name, description, Travel_mode,Imgpath,country} = request.body;
+        const {destination_name, description, Price,Imgpath,country} = request.body;
+        console.log(destination_name, description, Price,Imgpath,country);
+        
 
-        const qry = `UPDATE destination SET destination_name='${destination_name}', description='${description}',Travel_mode='${Travel_mode}',Imgpath='${Imgpath}',country='${country}' WHERE dest_id=${request.params.id}`;
+        const qry = `UPDATE destination SET destination_name='${destination_name}', description='${description}',Price='${Price}',Imgpath='${Imgpath}' WHERE dest_id=${request.params.id}`;
         const [resultSet] = await connection.query(qry);
         if(resultSet.affectedRows === 1){
             response.status(200).send({message:'Destination Updated'});

@@ -7,7 +7,7 @@ export function AddDestination() {
     const [formData, setFormData] = useState({
     destination_name: "",
     description: "",
-    Travel_mode: "",
+    Price: "",
     Imgpath: "",
     country: "",
   });
@@ -66,7 +66,7 @@ export function AddDestination() {
     <Container className="py-5" style={{ maxWidth: "600px" }}>
       <Card className="shadow border-0 rounded-4">
         <Card.Body>
-          <h3 className="text-center mb-4 text-primary fw-bold">
+          <h3 className="text-center mb-4 text-secondary fw-bold">
             Add New Destination
           </h3>
 
@@ -97,12 +97,12 @@ export function AddDestination() {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Travel Mode</Form.Label>
+              <Form.Label>Price</Form.Label>
               <Form.Control
                 type="text"
-                name="Travel_mode"
-                placeholder="e.g., Flight, Train, Bus"
-                value={formData.Travel_mode}
+                name="Price"
+                placeholder="Enter Price"
+                value={formData.Price}
                 onChange={handleChange}
                 required
               />
@@ -133,7 +133,7 @@ export function AddDestination() {
             </Form.Group>
 
             <div className="text-center">
-              <Button variant="primary" type="submit" className="px-4 rounded-pill">
+              <Button variant="secondary" type="submit" className="px-4 rounded-pill btn btn-dark">
                 Add Destination
               </Button>
             </div>

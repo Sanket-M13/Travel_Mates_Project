@@ -13,8 +13,8 @@ export function BookTripForm() {
     start_date: "",
     end_date: "",
     No_of_Person: 1,
-    Mode: destination.Travel_Mode || "",
-    Budget: "",
+    Price: destination.Price || "",
+    Budget: destination.Price || "",
   });
 
   const handleChange = (e) => {
@@ -64,7 +64,7 @@ export function BookTripForm() {
               </Card.Text>
               <p className="text-center mb-0">
                 <strong>Country:</strong> {destination.Country} <br />
-                <strong>Mode:</strong> {destination.Travel_Mode}
+                <strong>Price:</strong> {destination.Price}
               </p>
             </Card.Body>
           </Card>

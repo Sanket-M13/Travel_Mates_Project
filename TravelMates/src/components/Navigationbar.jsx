@@ -1,34 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { getToken, removeToken } from "../services/TokenService";
-import { removeRole } from "../services/RoleService";
-import { useEffect } from "react";
+import { getRole, removeRole } from "../services/RoleService";
+import "../assets/css/Navbar.css";
 
 export function Navigationbar() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
-    const token = getToken(); // Check if token exists
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    const token = getToken();
+    const role = getRole();
+    setIsLoggedIn(!!token);
+    setUserRole(role);
   }, []);
-  
-  const handleLoginClick = () => {
-    navigate("/login"); // go to login page
-  };
+
+  const handleLoginClick = () => navigate("/login");
+
   const handleLogout = () => {
-        removeToken();
-        removeRole();
-        navigate("/login");
-    }
-  // const handleProfileClick = () => {
-  //   navigate("/profile"); // go to profile page
-  // };
+    removeToken();
+    removeRole();
+    navigate("/login");
+  };
 
   return (
     <Navbar expand="lg" bg="light" variant="light" className="shadow-sm py-3">
@@ -39,31 +34,45 @@ export function Navigationbar() {
           style={{ letterSpacing: "1px", cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          🌍 TravelMates
+          🌍 DestinyGo
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-            <Nav.Link onClick={() => navigate("/")} className="mx-2 fw-medium">
+            <Nav.Link onClick={() => navigate("/")} className="mx-2 fw-medium nav-hover">
               Home
             </Nav.Link>
-            <Nav.Link onClick={() => navigate("/destinations")} className="mx-2 fw-medium">
+
+            <Nav.Link onClick={() => navigate("/destinations")} className="mx-2 fw-medium nav-hover">
               Destinations
             </Nav.Link>
-             <Nav.Link onClick={() => navigate("/destinationsList")} className="mx-2 fw-medium">
-              DestinationsList
+
+            {/* 👇 Only show these links if user is logged in AND is admin */}
+            {isLoggedIn && userRole === "admin" && (
+              <>
+                <Nav.Link
+                  onClick={() => navigate("/destinationsList")}
+                  className="mx-2 fw-medium nav-hover"
+                >
+                  DestinationsList
+                </Nav.Link>
+                <Nav.Link
+                  onClick={() => navigate("/AddDestinations")}
+                  className="mx-2 fw-medium nav-hover"
+                >
+                  Add Destination
+                </Nav.Link>
+              </>
+            )}
+
+            <Nav.Link onClick={() => navigate("/Mybookings")} className="mx-2 fw-medium nav-hover">
+              MyBookings
             </Nav.Link>
-            <Nav.Link onClick={() => navigate("/Adddestinations")} className="mx-2 fw-medium">
-              Add Destinations
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/bookings")} className="mx-2 fw-medium">
-              Bookings
-            </Nav.Link>
-             <Nav.Link onClick={() => navigate("/book-trip")} className="mx-2 fw-medium">
-              bookMyTrip
-            </Nav.Link>
-            <Nav.Link onClick={() => navigate("/about")} className="mx-2 fw-medium">
+
+        
+
+            <Nav.Link onClick={() => navigate("/aboutus")} className="mx-2 fw-medium nav-hover">
               About Us
             </Nav.Link>
           </Nav>

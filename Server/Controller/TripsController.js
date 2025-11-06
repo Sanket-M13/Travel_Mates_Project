@@ -7,7 +7,7 @@ export async function BookTrip(req ,res) {
         const userId = req.params.id;
 
         const [destResult] = await connection.query(
-            `SELECT destination_name FROM destination WHERE dest_id = ${dest_id}`
+            `SELECT destination_name, Price FROM destination WHERE dest_id = ${dest_id}`
         );
 
         if (destResult.length === 0) {
@@ -16,8 +16,10 @@ export async function BookTrip(req ,res) {
 
         const destinationName = destResult[0].destination_name;
 
-
-        const totalBudget = Budget * No_of_Person;
+         const cleanPrice = destResult[0].Price.replace(/[^0-9.]/g, "");
+        const totalBudget = parseFloat(cleanPrice) * Number(No_of_Person);
+        
+        // const totalBudget = Budget * No_of_Person;
 
         const qry = `
             INSERT INTO trip (source, destination, start_date, end_date, No_of_Person, Mode, Budget, id, dest_id)

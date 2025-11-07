@@ -14,4 +14,6 @@ export const DELETE_DESTINATION_API_URL = `${API_BASE_URL}/DeleteDestinationById
 export const BOOK_MY_TRIP_API_URL = `${API_BASE_URL}/bookMyTrip`;
 export const GET_MY_TRIP_API_URL = `${API_BASE_URL}/MyTrip`;
 
+export const GET_USER_NAME_AND_ID = `${API_BASE_URL}/UserNameAndId`;
+
 

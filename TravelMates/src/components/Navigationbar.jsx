@@ -4,31 +4,46 @@ import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { getToken, removeToken } from "../services/TokenService";
 import { getRole, removeRole } from "../services/RoleService";
 import "../assets/css/Navbar.css";
+import { getUserId } from "../services/MyTripService";
 
 export function Navigationbar() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState(null);
+  const [userName, setUserName] = useState(""); 
 
   useEffect(() => {
     const token = getToken();
     const role = getRole();
     setIsLoggedIn(!!token);
     setUserRole(role);
+
+    if (token) {
+      fetchUsername(); 
+    }
   }, []);
+
+  const fetchUsername = async () => {
+    try {
+      const res = await getUserId();
+      setUserName(res.data.name);
+    } catch (err) {
+      console.error("Failed to fetch username:", err);
+    }
+  };
 
   const handleLoginClick = () => navigate("/login");
 
   const handleLogout = () => {
     removeToken();
     removeRole();
+    setUserName("");
     navigate("/login");
   };
 
   return (
     <Navbar expand="lg" bg="light" variant="light" className="shadow-sm py-3">
       <Container>
-        {/* Brand */}
         <Navbar.Brand
           className="fw-bold text-primary fs-4"
           style={{ letterSpacing: "1px", cursor: "pointer" }}
@@ -48,7 +63,6 @@ export function Navigationbar() {
               Destinations
             </Nav.Link>
 
-            {/* 👇 Only show these links if user is logged in AND is admin */}
             {isLoggedIn && userRole === "admin" && (
               <>
                 <Nav.Link
@@ -70,17 +84,21 @@ export function Navigationbar() {
               MyBookings
             </Nav.Link>
 
-        
-
             <Nav.Link onClick={() => navigate("/aboutus")} className="mx-2 fw-medium nav-hover">
               About Us
             </Nav.Link>
           </Nav>
 
-          <Form className="d-flex align-items-center gap-2">
+          <Form className="d-flex align-items-center gap-3">
+            {isLoggedIn && userName && (
+              <span className="fw-semibold text-secondary">
+                👋 Welcome, <span className="text-primary">{userName}</span>
+              </span>
+            )}
+
             {isLoggedIn ? (
               <Button
-                variant="outline-success"
+                variant="outline-dark"
                 className="rounded-pill px-3"
                 onClick={handleLogout}
               >

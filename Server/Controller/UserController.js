@@ -1,7 +1,6 @@
 import { getConnectionObject } from "../config/db.js";
 import { compareSync, hashSync } from "bcrypt";
-import jwt from 'jsonwebtoken'
-// import { ROLES } from "../constants/RoleConstants.js";
+import jwt from 'jsonwebtoken';
 
 export async function registerUser(request,response) {
     try {
@@ -28,8 +27,6 @@ export async function Login(request, response) {
     try {
         const connection = getConnectionObject();
         const { email, password, role } = request.body;
-        // const tableName = role === ROLES.ADMINS ? 'admins': 'users';
-        console.log(role);
         
         var tableName = null;
         if(role === 'admin'){
@@ -51,6 +48,35 @@ export async function Login(request, response) {
                 response.status(400).send({ message: "Login failed, password is invalid" });
             }
         }
+    } catch (error) {
+        console.log(error);
+        response.status(500).send({ message: 'Something went wrong' });
+    }
+}
+
+export async function getUserNameAndId(request, response) {
+    try {
+ 
+        const authHeader = request.headers.authorization;
+        
+        const token = authHeader.split(" ")[1];
+        // console.log(token);
+        if (!token) {
+            return response.status(401).send({ message: 'Token missing or invalid' });
+        }
+
+        const decoded = jwt.verify(token,'admin1234');
+        const connection = getConnectionObject();
+
+        const qry = `SELECT id, name FROM users WHERE id = ${decoded.id}`;
+        const [rows] = await connection.query(qry);
+
+        if (rows.length === 0) {
+            return response.status(404).send({ message: 'User not found' });
+        }
+
+        response.status(200).send({ id: rows[0].id, name: rows[0].name });
+
     } catch (error) {
         console.log(error);
         response.status(500).send({ message: 'Something went wrong' });

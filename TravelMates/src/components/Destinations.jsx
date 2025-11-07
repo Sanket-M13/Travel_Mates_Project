@@ -21,7 +21,6 @@ export function Destinations() {
   }, []);
 
   const handleBookTrip = (destination) => {
-    // Navigate to BookTripForm and send destination details as state
     navigate("/book-trip", { state: { destination } });
   };
 

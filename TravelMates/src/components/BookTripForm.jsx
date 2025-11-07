@@ -2,11 +2,11 @@ import { useLocation } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { bookMyTrip } from "../services/MyTripService";
+import { bookMyTrip, getUserId } from "../services/MyTripService";
 
 export function BookTripForm() {
   const { state } = useLocation();
-  const destination = state?.destination;
+  const destination = state.destination;
 
   const [formData, setFormData] = useState({
     source: "",
@@ -25,7 +25,8 @@ export function BookTripForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userId = 1; // Replace with logged-in user ID later
+     const userResponse = await getUserId();
+      const userId = userResponse.data.id;
       const response = await bookMyTrip(userId, {
         ...formData,
         dest_id: destination.dest_id,

@@ -6,10 +6,9 @@ import "../assets/css/Login.css";
 import { UserLogin } from "../services/LoginService.js";
 import { getToken, storeToken } from "../services/TokenService.js";
 import { storeRole } from "../services/RoleService.js";
-// import { isLoggedIn } from "../Constants/Constants.js";
 
 export function Login() {
-  const [formData, setformdata] = useState({email:'', password:'',role:''})
+  const [formData, setformdata] = useState({email:'', password:'',role:''});
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   // const [userRole, setUserRole] = useState('user');

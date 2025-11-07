@@ -23,7 +23,7 @@ export function AddDestination() {
         const response = await AddDesitnation(formData);
         console.log(response);
         if (response.status === 200) {
-                // show success message
+            
                 toast.success("Destination Added", {
                     position: "top-right",
                     autoClose: 5000,
@@ -40,7 +40,7 @@ export function AddDestination() {
     } catch (error) {
         console.log(error);
         if (error.response.status === 500) {
-                // show failure message
+                
                 toast.error("Something went wrong", {
                     position: "top-right",
                     autoClose: 5000,

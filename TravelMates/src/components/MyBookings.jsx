@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { getMyTrips } from "../services/MyTripService"; // service that calls backend
+import { getMyTrips, getUserId } from "../services/MyTripService"; // service that calls backend
 
 export function MyBookings() {
   const [trips, setTrips] = useState([]);
@@ -13,7 +13,8 @@ export function MyBookings() {
 
   const fetchMyTrips = async () => {
     try {
-      const userId = 1; 
+      const userResponse = await getUserId();
+      const userId = userResponse.data.id;
       const response = await getMyTrips(userId);
       setTrips(response.data);
     } catch (error) {
